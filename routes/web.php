@@ -35,3 +35,4 @@ Route::post('/verifbimbingansempro','DosenController@datadaftarsempro_up')->name
 //kaprodi
 Route::get('/datasempro','KaprodiController@datasempro');
 Route::get('/penjadwalansempro','KaprodiController@penjadwalansempro')->name('penjadwalansempro');
+Route::post('/post/penjadwalansempro','KaprodiController@jadwalkansempro_post')->name('penjadwalansempro_post');

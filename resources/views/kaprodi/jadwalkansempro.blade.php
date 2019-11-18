@@ -19,6 +19,8 @@
                                         <h4 class="header-title">Penjadwalan Sempro</h4>
                                         <p class="text-muted font-14 mb-4">Silahkan menggunakan aplikasi ini sebaik-baiknya.
 Jika Anda mengalami kesulitan, silahkan hubungi <code>Administrator</code>.</p>
+                                    <form action="{{route('penjadwalansempro_post')}}" method="POST" enctype="multipart/form-data">>
+                                        {{csrf_field()}}
                                        <fieldset disabled="">
                                         <div class="form-group">
                                                     <label for="disabledTextInput">Nama</label>
@@ -35,42 +37,45 @@ Jika Anda mengalami kesulitan, silahkan hubungi <code>Administrator</code>.</p>
                                         </fieldset>
                                         <div class="form-group">
                                             <label class="col-form-label">Dosen Penguji 1</label>
-                                            <select class="custom-select">
-                                                <option selected="selected">Pilih Dosen</option>
+                                            <select name="penguji1" class="custom-select">
+                                                <option  selected="selected">Pilih Dosen</option>
                                                 @foreach ($dosenpenguji as $d)
-                                                <option value="">{{$d->name . ' - ' . $d->nim}}</option>
+                                                <option value="{{$d->id}}">{{$d->name . ' - ' . $d->nim}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-form-label">Dosen Penguji 2</label>
-                                            <select class="custom-select">
+                                            <select name="penguji2" class="custom-select">
                                                 <option selected="selected">Pilih Dosen</option>
                                                 @foreach ($dosenpenguji as $d)
-                                                <option value="">{{$d->name . ' - ' . $d->nim}}</option>
+                                                <option value="{{$d->id}}">{{$d->name . ' - ' . $d->nim}}</option>
                                                 @endforeach
                                             </select>
                                         </div>       
                                         <div class="form-group">
                                             <label for="example-date-input" class="col-form-label">Tanggal</label>
-                                            <input class="form-control" type="date" value="2018-03-05" id="example-date-input">
+                                            <input class="form-control" type="date" name="tanggal" id="example-date-input">
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label class="col-form-label">Custom Select</label>
-                                            <select class="custom-select">
+                                            <label class="col-form-label">Pilih Ruang dan Waktu</label>
+                                            <select name="ruang" class="custom-select">
                                                 <option selected="selected">Open this select menu</option>
                                                 @foreach ($ruang as $r)
-                                                <option value="">{{$r->nama_ruang .' - Sesi '. $r->sesi}}</option>
+                                                <option value="{{$r->ruangId}}|{{$r->waktuId}}">{{$r->nama_ruang .' - Sesi '. $r->sesi . ' - ' .$r->jam_mulai . ' - ' . $r->jam_akhir}}</option>
                                                 @endforeach
                                             </select>
                                         
-    
+                                        <input type="hidden" name="id_user" value="{{$data[0]->idMhs}}">
+                                        <input type="hidden" name="id_proposalsempro" value="{{$data[0]->idProposalsempro}}">
 
                                         </div>
                                     <div class="form-group" style="float: right;">    
-                                      <button type="button" class="btn btn-rounded btn-success mb-3">Jadwalkan</button>  
-                                    </div>  
+                                      <button type="submit" class="btn btn-rounded btn-success mb-3">Jadwalkan</button>  
+                                    </div> 
+
+                                    </form>
                                     </div>
                                 </div>
                             </div>
