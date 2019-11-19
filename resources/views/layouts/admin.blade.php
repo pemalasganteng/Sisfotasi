@@ -88,7 +88,7 @@
     {{Auth::user()->name}}
 
   </a>
-  <div class="dropdown-menu show" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 21px, 0px); top: 0px; left: 0px; will-change: transform;">
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 21px, 0px); top: 0px; left: 0px; will-change: transform;">
     <a class="dropdown-item" href="#">Setting</a>
     <a class="dropdown-item" href="{{ route('logout') }}">Logout </a>
   </div>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\rwdetail;
 use App\semprojadwal;
+use App\ruang;
 
 class KaprodiController extends Controller
 {
@@ -66,6 +67,21 @@ class KaprodiController extends Controller
         $insert2->save();
 
         return redirect()->back()->with('sukses','Berhasil Dijadwalkan'); 
+
+    }
+    public function isiruang(){
+        $data = DB::table('ruang')->select('*')->get();
+        $data2 = DB::table('ruang')->join('waktu','ruang.id','=','waktu.id_ruang')->get();
+        return view('kaprodi.isiruang',compact('data'));
+
+    }
+    public function isiruang_post(Request $request){
+        $request->validate([
+            'nama_ruang' => 'required'
+        ]);
+        $insert = new ruang;
+        $insert->nama_ruang = $request->nama_ruang;
+        return redirect()->back()->with('sukses','berhasil menambahkan ruangan');
 
     }
 }

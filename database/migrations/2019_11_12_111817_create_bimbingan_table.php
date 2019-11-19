@@ -22,12 +22,13 @@ class CreateBimbinganTable extends Migration
             $table->string('ket_revisi');
             $table->date('tanggal_acc');
             $table->bigInteger('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('user')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('id_dosen')->unsigned();
-            $table->foreign('id_dosen')->references('id')->on('user')->onDelete('cascade');
+            $table->foreign('id_dosen')->references('id')->on('users')->onDelete('cascade');
             
             $table->timestamps();
         });
+
     }
 
     /**
@@ -38,5 +39,7 @@ class CreateBimbinganTable extends Migration
     public function down()
     {
         Schema::dropIfExists('bimbingan');
+
+        
     }
 }
