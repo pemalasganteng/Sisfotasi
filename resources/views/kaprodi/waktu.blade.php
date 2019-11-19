@@ -74,7 +74,7 @@ Jika Anda mengalami kesulitan, silahkan hubungi <code>Administrator</code>.</p>
                                                     <td>{{$d->nama_ruang}}</td>
                                                     <td>{{$d->sesi}}</td>
                                                     <td>{{$d->jam_mulai .' - ' . $d->jam_akhir}}</td>
-                                                    <td><i class="ti-trash"></i></td>
+                                                    <td><a onclick="return confirm('apakah anda yakin')" href=""><i class="ti-trash"></</i></a></td>
                                                     
                                                 </tr>
                                                 @endforeach

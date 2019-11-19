@@ -48,9 +48,13 @@
                             <li class="active">
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>dashboard</span></a>
                                 <ul class="collapse">
+                                    @if (Auth::user()->role == 1)
                                     <li><a href="{{route('datasempro')}}">Data Sempro</a></li>
+                                    @endif
+                                    @if(Auth::user()->role == 3)
                                     <li><a href="{{route('sempro')}}">Status Pengajuan Proposal</a></li>
-                                    <li><a href="index3.html">SEO dashboard</a></li>
+                                    @endif
+                                    
                                 </ul>
                             </li>
                         </ul>
