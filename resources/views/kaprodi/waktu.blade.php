@@ -19,17 +19,34 @@
                                         <h4 class="header-title">Penjadwalan Sempro</h4>
                                         <p class="text-muted font-14 mb-4">Silahkan menggunakan aplikasi ini sebaik-baiknya.
 Jika Anda mengalami kesulitan, silahkan hubungi <code>Administrator</code>.</p>
-                                    <form action="{{route('isiruang_post')}}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{route('waktu_post')}}" method="POST" enctype="multipart/form-data">
                                         {{csrf_field()}}
                                        
                                         <div class="form-group">
-                                                    <label for="disabledTextInput">Nama Ruang</label>
-                                                    <input type="text" id="disabledTextInput" class="form-control" name="nama_ruang">
+                                                    <label for="disabledTextInput">Sesi</label>
+                                                    <input type="text" id="disabledTextInput" placeholder="1" class="form-control" name="sesi">
                                                 </div>
                                          
-                                   
+                                        <div class="form-group">
+                                            <label class="col-form-label">Pilih Ruangan</label>
+                                            <select name="ruangan" class="custom-select">
+                                                <option  selected="selected">Pilih Ruangan</option>
+                                                @foreach ($ruang as $d)
+                                                <option value="{{$d->id}}">{{$d->nama_ruang}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>                                   
 
-                                       
+                                       <div class="form-group">
+                                            <label for="example-time-input" class="col-form-label">Jam Mulai</label>
+                                            <input class="form-control" type="time" name="time1" id="example-time-input">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="example-time-input" class="col-form-label">Jam Akhir</label>
+                                            <input class="form-control" type="time" name="time2" id="example-time-input">
+                                        </div>
+
                                     <div class="form-group">    
                                       <button type="submit" class="btn btn-rounded btn-success mb-3">Tambah</button>  
                                     </div> 
@@ -37,7 +54,7 @@ Jika Anda mengalami kesulitan, silahkan hubungi <code>Administrator</code>.</p>
                                     </form>
                                     <div class="card-body">
                                 <h4 class="header-title">Data Ruangan</h4>
-                                <div style="width: 50%; float: center;" class="single-table">
+                                <div float: center;" class="single-table">
                                     <div class="table-responsive">
                                         <table class="table text-center">
                                             <thead class="text-uppercase bg-danger">
@@ -45,17 +62,22 @@ Jika Anda mengalami kesulitan, silahkan hubungi <code>Administrator</code>.</p>
                                                     <th scope="col">ID</th>
                                                     <th scope="col">Nama Ruangan</th>
                                                     <th scope="col">Sesi</th>
+                                                    <th scope="col">Waktu</th>
                                                     <th scope="col">action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach ($data as $d)
                                                 <tr>
-                                                    @foreach ($data as $d)
+                                                    
                                                     <th scope="row">{{$loop->iteration}}</th>
                                                     <td>{{$d->nama_ruang}}</td>
-                                                    <td><a href="{{route('waktu',['id' => $d->id])}}"><i class="ti-eye"></i></a></td>
-                                                    @endforeach
+                                                    <td>{{$d->sesi}}</td>
+                                                    <td>{{$d->jam_mulai .' - ' . $d->jam_akhir}}</td>
+                                                    <td><i class="ti-trash"></i></td>
+                                                    
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

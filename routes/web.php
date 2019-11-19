@@ -39,3 +39,4 @@ Route::post('/post/penjadwalansempro','KaprodiController@jadwalkansempro_post')-
 Route::get('/isiruang','KaprodiController@isiruang')->name('isiruang');
 Route::post('/post/isiruang','KaprodiController@isiruang_post')->name('isiruang_post');
 Route::get('/waktu/{id}','KaprodiController@waktu')->name('waktu');
+Route::post('post/waktu','KaprodiController@waktu_post')->name('waktu_post');

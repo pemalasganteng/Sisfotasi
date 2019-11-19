@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class waktu extends Model
+class penawaran_judul extends Model
 {
-    protected $table = 'waktu';
+    //
 }

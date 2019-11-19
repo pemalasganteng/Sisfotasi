@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\rwdetail;
 use App\semprojadwal;
 use App\ruang;
+use App\waktu;
 
 class KaprodiController extends Controller
 {
@@ -85,10 +86,26 @@ class KaprodiController extends Controller
 
     }
     public function waktu($id){
+        $ruang = DB::table('ruang')->get();
         $data = DB::table('waktu')
         ->where('waktu.id_ruang','=',$id)
         ->join('ruang','waktu.id_ruang','=','ruang.id')
         ->get();
-        return view('kaprodi.waktu');
+        return view('kaprodi.waktu',compact('data','ruang'));
+    }
+    public function waktu_post(Request $request){
+        $request->validate([
+            'sesi' => 'required',
+            'ruangan' => 'required',
+            'time1' => 'required',
+            'time2' => 'required'
+        ]);
+        $insert = new waktu;
+        $insert->sesi = $request->sesi;
+        $insert->id_ruang = $request->ruangan;
+        $insert->jam_mulai = $request->time1;
+        $insert->jam_akhir = $request->time2;
+        $insert->save();
+        return redirect()->back()->with('sukses','berhasil menambahkan waktu pada ruangan.');
     }
 }

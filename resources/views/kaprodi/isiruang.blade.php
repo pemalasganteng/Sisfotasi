@@ -48,13 +48,15 @@ Jika Anda mengalami kesulitan, silahkan hubungi <code>Administrator</code>.</p>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach ($data as $d)
                                                 <tr>
-                                                    @foreach ($data as $d)
+                                                    
                                                     <th scope="row">{{$loop->iteration}}</th>
                                                     <td>{{$d->nama_ruang}}</td>
                                                     <td><a href="{{route('waktu',['id' => $d->id])}}"><i class="ti-eye"></i></a></td>
-                                                    @endforeach
+                                                    
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
