@@ -84,4 +84,11 @@ class KaprodiController extends Controller
         return redirect()->back()->with('sukses','berhasil menambahkan ruangan');
 
     }
+    public function waktu($id){
+        $data = DB::table('waktu')
+        ->where('waktu.id_ruang','=',$id)
+        ->join('ruang','waktu.id_ruang','=','ruang.id')
+        ->get();
+        return view('kaprodi.waktu');
+    }
 }

@@ -44,6 +44,7 @@ Jika Anda mengalami kesulitan, silahkan hubungi <code>Administrator</code>.</p>
                                                 <tr class="text-white">
                                                     <th scope="col">ID</th>
                                                     <th scope="col">Nama Ruangan</th>
+                                                    <th scope="col">Sesi</th>
                                                     <th scope="col">action</th>
                                                 </tr>
                                             </thead>
