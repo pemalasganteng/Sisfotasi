@@ -23,6 +23,9 @@ Route::get('/home/daftar-proposal', 'HomeController@daftar_proposal')->name('daf
 Route::post('/post/daftar-proposal', 'HomeController@daftar_proposal_post')->name('daftar-proposal-post');
 Route::get('/home/sempro', 'HomeController@sempro')->name('sempro');
 
+Route::get('/home/tahap', 'HomeController@tahap')->name('tahap');
+
+
 
 //Dosen
 Route::get('/home/datasempro', 'DosenController@datasempro')->name('datasempro');
