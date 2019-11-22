@@ -21,6 +21,29 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                
+                                               @if (is_null($sempro))
+                                               <tr>
+                                                    @foreach ($sempro1 as $d)
+                                                    <th scope="row">1</th>
+                                                    <td>{{$d->judul}}</td>
+                                                    <td>{{$d->abstrak}}</td>
+                                                    <td><a href="{{asset('filesempro/'.$d->file)}}"> {{$d->file}}</a></td>
+                                                    <td>{{date('d/m/Y', strtotime($s->created_at))}}</td>
+                                                    <td>
+                                                        @if($s->status == 'Belum Disetujui')
+                                                        <i class="fa fa-minus"></i>
+                                                        @elseif($s->status == 'Disetujui')
+                                                        <i class="fa fa-check"></i>
+                                                        @elseif($s->status == 'Ditolak')
+                                                        <i class="fa fa-close"></i>
+                                                        @endif
+                                                    </td>
+                                                    <td>Belum Terjadwal</td>
+                                                    @endforeach
+                                                </tr>
+                                               
+                                               @elseif (!is_null($sempro))
                                                 <tr>
                                                 	@foreach ($sempro as $s)
                                                     <th scope="row">1</th>
@@ -37,9 +60,14 @@
                                                     	<i class="fa fa-close"></i>
                                                     	@endif
                                                     </td>
+                                                    @if (isset($s->idSemprojadwal))
+                                                    <td><a href="{{route('detail_jadwalsempro',['id' => $s->idSemprojadwal])}}"><i class="ti ti-info-alt"> Terjadwal</i></td>
+                                                    @else
                                                     <td>Belum Terjadwal</td>
+                                                    @endif
                                                     @endforeach
                                                 </tr>
+                                                @endif
                                             </tbody>
                                         </table>
                                         <div class="alert alert-primary" role="alert">

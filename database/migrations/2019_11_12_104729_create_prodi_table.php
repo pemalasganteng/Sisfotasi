@@ -11,6 +11,9 @@ class CreateProdiTable extends Migration
      *
      * @return void
      */
+    public function __construct(){
+        Schema::disableForeignKeyConstraints();
+    }
     public function up()
     {
         Schema::create('prodi', function (Blueprint $table) {

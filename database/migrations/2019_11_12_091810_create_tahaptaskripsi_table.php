@@ -18,14 +18,14 @@ class CreateTahaptaskripsiTable extends Migration
     {
         Schema::create('tahaptaskripsi', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('status_pengajuansempro',50);
-            $table->string('status_jadwalsempro',50);
-            $table->string('status_revisisempro',50);
-            $table->string('status_penilitian',50);
-            $table->string('status_pendaftaranujian',50);
-            $table->string('status_ujianjadwal',50);
-            $table->string('status_revisita',50);
-            $table->string('status_laporanfileselesai');
+            $table->string('status_pengajuansempro',50)->nullable();
+            $table->string('status_jadwalsempro',50)->nullable();
+            $table->string('status_revisisempro',50)->nullable();
+            $table->string('status_penilitian',50)->nullable();
+            $table->string('status_pendaftaranujian',50)->nullable();
+            $table->string('status_ujianjadwal',50)->nullable();
+            $table->string('status_revisita',50)->nullable();
+            $table->string('status_laporanfileselesai')->nullable();
             $table->bigInteger('id_proposalsempro')->unsigned();
             $table->foreign('id_proposalsempro')->references('id')->on('proposalsempro')->onDelete('cascade');
             $table->bigInteger('id_semprojadwal')->unsigned();

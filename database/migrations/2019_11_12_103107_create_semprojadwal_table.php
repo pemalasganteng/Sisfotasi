@@ -23,9 +23,9 @@ class CreateSemprojadwalTable extends Migration
             $table->bigInteger('id_dosen2')->unsigned();
             $table->foreign('id_dosen2')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('id_ruang')->unsigned();
-            $table->foreign('id_ruang')->references('id_ruang')->on('ruangwaktudetail')->onDelete('cascade');
+            $table->foreign('id_ruang')->references('id')->on('ruang')->onDelete('cascade');
             $table->bigInteger('id_waktu')->unsigned();
-            $table->foreign('id_waktu')->references('id_waktu')->on('ruangwaktudetail')->onDelete('cascade');
+            $table->foreign('id_waktu')->references('id')->on('waktu')->onDelete('cascade');
             $table->bigInteger('id_proposalsempro')->unsigned();
             $table->foreign('id_proposalsempro')->references('id')->on('proposalsempro')->onDelete('cascade');
             $table->bigInteger('id_tahap')->unsigned();

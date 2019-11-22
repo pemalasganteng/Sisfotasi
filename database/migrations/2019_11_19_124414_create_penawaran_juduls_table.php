@@ -15,7 +15,10 @@ class CreatePenawaranJudulsTable extends Migration
     {
         Schema::create('penawaran_juduls', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->string('judul');
+            $table->string('penjelasan');
+            $table->string('status_tampil');
+            $table->bigInteger('id_prodi')->nullable();
         });
     }
 

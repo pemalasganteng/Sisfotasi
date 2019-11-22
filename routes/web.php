@@ -24,7 +24,7 @@ Route::post('/post/daftar-proposal', 'HomeController@daftar_proposal_post')->nam
 Route::get('/home/sempro', 'HomeController@sempro')->name('sempro');
 
 Route::get('/home/tahap', 'HomeController@tahap')->name('tahap');
-
+Route::get('/home/detail/jadwalsempro/{id}','HomeController@detail_jadwalsempro')->name('detail_jadwalsempro');
 
 
 //Dosen

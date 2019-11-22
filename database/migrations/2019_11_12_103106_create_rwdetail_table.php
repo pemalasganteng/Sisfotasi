@@ -11,7 +11,7 @@ class CreateRwdetailTable extends Migration
      *
      * @return void
      */
-     public function __construct(){
+    public function __construct(){
         Schema::disableForeignKeyConstraints();
     }
     public function up()

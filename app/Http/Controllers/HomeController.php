@@ -61,11 +61,47 @@ class HomeController extends Controller
         return redirect()->back()->with('sukses','File Seminar Proposal Berhasil Ditambah...');
     }
     public function sempro(){
-        $sempro = DB::table('proposalsempro')->where('id_user',Auth::user()->id)->get();
-        return view('sempro',compact('sempro'));
+        $sempro = DB::table('proposalsempro')
+        ->where('proposalsempro.id_user',Auth::user()->id)
+        ->join('semprojadwal','proposalsempro.id','=','semprojadwal.id_proposalsempro')
+        ->select('proposalsempro.*','semprojadwal.id as idSemprojadwal')
+        ->get();
+
+        
+        $sempro1 = DB::table('proposalsempro')
+        ->where('proposalsempro.id_user',Auth::user()->id)
+        // ->join('semprojadwal','proposalsempro.id','=','semprojadwal.id_proposalsempro')
+        ->select('proposalsempro.*')
+        ->get();
+        
+        return view('sempro',compact('sempro','sempro1'));
+
     }
     public function logout(){
         Auth::logout();
         return redirect('/login');
     }
+    public function detail_jadwalsempro($id){
+        $data = DB::table('semprojadwal')
+        ->where('id_proposalsempro',$id)
+        ->join('users as dosen1','semprojadwal.id_dosen1','=','dosen1.id')
+        ->join('users as dosen2','semprojadwal.id_dosen2','=','dosen2.id')
+        ->join('proposalsempro','semprojadwal.id_proposalsempro','=','proposalsempro.id')
+        ->join('ruang','semprojadwal.id_ruang','=','ruang.id')
+        ->join('waktu','semprojadwal.id_waktu','=','waktu.id')
+        ->select('semprojadwal.*','dosen1.name as namaDosen1','dosen2.name as namaDosen2','dosen1.nim as nimDosen1','dosen2.nim as nimDosen2','ruang.*','waktu.*')
+        ->get();
+
+        
+        $data2 = DB::table('proposalsempro')->where('proposalsempro.id',$id)
+        // ->join('users','proposalsempro.id_dosen','=','users.id')
+        ->join('users as p','proposalsempro.id_dosen','=','p.id')
+        ->join('users','proposalsempro.id_user','=','users.id')
+        ->select('proposalsempro.*','users.name','users.nim','p.name as nameDosen','p.nim as nimDosen')
+        ->get();
+        return view('mahasiswa.jadwalsempro',compact('data','data2'));
+
+    }
 }
+
+
